@@ -1,0 +1,128 @@
+---
+import { formatDate } from "../utils";
+import { urlFor } from "../utils/image";
+import type { Post } from "../utils/sanity";
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+
+<li>
+  <a class="card__link" href={`/post/${post.slug.current}`}>
+
+  <section class="logo-partner-section">
+    <div>
+      {
+        post.mainImage && (
+          <img
+            height="60"
+            width="60"
+            src={urlFor(post.mainImage).url()}
+            alt=""
+          />
+        )
+      }      
+    <h2>{post.title}</h2>
+    </div>
+    <img src="/public/arrow_right.svg" alt="arrow right" />
+  </section>
+
+
+  <section class="more-info-section">
+    <span>Laatst bewerkt: {formatDate(post._createdAt)}</span>
+
+    <div class="progress-container">
+      <progress id="progress-partner" max="100" value="69"/>
+      <label class="progress-percentage" for="progress-partner">69%</label>
+    </div>
+  </section>
+</a>
+</li>
+
+<style>
+	li {
+		display: flex;
+    margin: 0.5rem;
+	}
+
+	li a {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 2.25em;
+		color: var(--c-text);
+		text-decoration: none;
+		background-color: var(--c-container);
+		padding: 1em;
+		border-radius: 0.5em;
+		border: solid 1px var(--c-container-stroke);
+		width: 100%;
+		transition: 0.25s ease;
+	}
+
+	li a:hover {
+		border: solid 1px var(--c-pink);
+	}
+
+	.logo-partner-section {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+
+	h2 {
+		font-size: 1.5em;
+		margin-top: 0.05em;
+	}
+
+	.more-info-section {
+		display: flex;
+		flex-direction: column;
+		font-size: 0.9em;
+	}
+
+	/* progress bar */
+	.progress-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 1em;
+		margin-top: 0.25em;
+	}
+
+	progress {
+		width: 100%;
+	}
+
+	progress[value] {
+		/* Reset the default appearance */
+		-webkit-appearance: none;
+		appearance: none;
+		height: 60%;
+	}
+
+	/* chrome/safari */
+	progress[value]::-webkit-progress-bar {
+		background-color: var(--c-container-stroke);
+		border-radius: 0.5em;
+	}
+
+	progress[value]::-webkit-progress-value {
+		background-color: var(--c-pink);
+		border-radius: 0.5em;
+		transition: 1s ease-out;
+	}
+
+	.progress-percentage {
+		height: 85%;
+	}
+
+	/* search css */
+	.container-off{
+		display: none;
+	}
+</style>
