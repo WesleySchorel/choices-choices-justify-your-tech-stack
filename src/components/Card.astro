@@ -10,6 +10,8 @@ interface Props {
 const { post } = Astro.props;
 ---
 
+
+
 <li>
   <a class="card__link" href={`/post/${post.slug.current}`}>
 
@@ -35,8 +37,8 @@ const { post } = Astro.props;
     <span>Laatst bewerkt: {formatDate(post._createdAt)}</span>
 
     <div class="progress-container">
-      <progress id="progress-partner" max="100" value="69"/>
-      <label class="progress-percentage" for="progress-partner">69%</label>
+      <progress id="progress-partner" max="100" value="77"/>
+      <label class="progress-percentage" for="progress-partner">77%</label>
     </div>
   </section>
 </a>
